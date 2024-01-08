@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "ds-messenger-bcac7": {
+      "hosting": {
+        "ds-messenger": [
+          "ds-messenger-bcac7"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "ds-messenger-bcac7"
+  }
+}

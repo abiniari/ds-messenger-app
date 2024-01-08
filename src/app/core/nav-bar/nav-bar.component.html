@@ -1,0 +1,42 @@
+<mat-sidenav-container [ngClass]="{'anauth': !isLoggedIn}" class="sidenav-container">
+  <mat-sidenav opened *ngIf="isLoggedIn" #drawer class="sidenav" fixedInViewport
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="'side'"
+    [opened]="(isHandset$ | async) === false">
+    <div class="side-nav-content">
+      <mat-toolbar class="justify-content-center flex-column mt-auto">
+        <button color="accent" *ngIf="(isHandset$ | async)" (click)="drawer.close()"
+          mat-icon-button><mat-icon>first_page</mat-icon></button>
+        <button color="accent" (click)="logoutUser()" mat-icon-button><mat-icon>power_settings_new</mat-icon></button>
+      </mat-toolbar>
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <!-- inner sidenav -->
+    <mat-sidenav-container class="example-container">
+      <mat-sidenav *ngIf="isLoggedIn" #innerDrawer [mode]="(isHandset$ | async) ? 'over' : 'side'"
+        fixedInViewport position="start" role="navigation" class="sidenav-wv">
+        <mat-nav-list class="h-50 pt-0">
+          <div class="nav-close d-flex justify-content-end">
+            <button mat-icon-button (click)="innerDrawer.close()"><mat-icon>close</mat-icon></button>
+          </div>
+        </mat-nav-list>
+      </mat-sidenav>
+      <mat-sidenav-content>
+        <mat-toolbar class="justify-content-between" color="primary">
+          <div class="site-logo d-flex align-items-center">
+            <app-site-logo></app-site-logo>
+            <span>DS Messenger</span>
+          </div>
+          <button *ngIf="(isHandset$ | async) && isLoggedIn" type="button" aria-label="Toggle sidenav" mat-icon-button
+            (click)="toggleDrawer()">
+            <mat-icon [matTooltip]="'Sign Out'" aria-label="Side nav toggle icon">menu</mat-icon>
+          </button>
+        </mat-toolbar>
+        <div class="theme-content py-2">
+          <ng-content></ng-content>
+        </div>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,108 @@
+.landing-page-container {
+  flex-wrap: wrap;
+  width: 90dvw;
+  height: 70dvh;
+  padding: 20px;
+
+  p {
+    color: #737373;
+  }
+
+  span {
+    background-image: linear-gradient(90deg, #00c4cc, #7d2ae8);
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+}
+
+.site-logo {
+  top: 5px;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  ::ng-deep {
+    svg {
+      width: 150px;
+      position: relative;
+      left: 20px;
+    }
+  }
+
+  h2 {
+    white-space: nowrap;
+    color: #737373;
+    font-weight: 500;
+  }
+
+}
+
+@media only screen and (max-width: 402px) {
+  .site-logo ::ng-deep {
+    svg {
+      left: 0px;
+    }
+  }
+
+  .landing-page-container {
+    padding: 20px 10px;
+  }
+
+}
+
+.photobanner {
+  height: auto;
+  white-space: nowrap;
+  width: 100dvw;
+  position: absolute;
+  top: -5px;
+  z-index: 1;
+}
+
+/* keyframe animations*/
+.first {
+  display: flex;
+  align-items: center;
+  -webkit-animation: bannermove 20s linear infinite;
+  -moz-animation: bannermove 20s linear infinite;
+  -ms-animation: bannermove 20s linear infinite;
+  -o-animation: bannermove 20s linear infinite;
+  animation: bannermove 20s linear infinite;
+
+  mat-icon {
+    color: darkorange;
+  }
+}
+
+@keyframes bannermove {
+  from {
+    margin-left: -10dvw;
+  }
+
+  to {
+    margin-left: 100dvw;
+  }
+
+}
+
+@-moz-keyframes bannermove {
+  from {
+    margin-left: -10dvw;
+  }
+
+  to {
+    margin-left: 100dvw;
+  }
+
+}
+
+@-webkit-keyframes bannermove {
+  from {
+    margin-left: -10dvw;
+  }
+
+  to {
+    margin-left: 100dvw;
+  }
+
+}
