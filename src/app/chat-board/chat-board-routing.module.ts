@@ -4,7 +4,11 @@ import { ChatBoardComponent } from './chat-board/chat-board.component';
 
 const routes: Routes = [
   {
-    path:'',component:ChatBoardComponent
+    path:'',component:ChatBoardComponent,children: [
+      {
+        path:'chat/:id',component:ChatBoardComponent
+      }
+    ]
   }
 ];
 

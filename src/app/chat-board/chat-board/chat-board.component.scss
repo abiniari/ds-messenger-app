@@ -1,0 +1,32 @@
+.message-sender {
+  background: #ffff;
+  box-shadow: 0 0px 4px 0px rgba(0, 0, 0, 0.15);
+
+  mat-form-field {
+    ::ng-deep {
+      .mat-form-field-wrapper {
+        padding-bottom: 0;
+      }
+    }
+  }
+}
+
+.text-bg-dark {
+  height: 100dvh;
+}
+
+.spacer {
+  height: 150px;
+}
+
+mat-card {
+  width: fit-content;
+  border-radius: 15px;
+
+}
+
+.friend-messages {
+  mat-card {
+    background-color: lightgrey;
+  }
+}

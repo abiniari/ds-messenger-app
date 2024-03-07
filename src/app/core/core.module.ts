@@ -7,6 +7,8 @@ import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { ConversationsModule } from '../conversations/conversations.module';
+import { UsersModule } from '../users/users.module';
 import { AuthorizationService } from './authorization.service';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { NavigationErrorComponent } from './navigation-error/navigation-error.component';
@@ -28,6 +30,8 @@ import { SiteLogoComponent } from './site-logo/site-logo.component';
     MatSidenavModule,
     MatIconModule,
     MatTooltipModule,
+    UsersModule,
+    ConversationsModule,
     MatListModule
   ],
   exports:[

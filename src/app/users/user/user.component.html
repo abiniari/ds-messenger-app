@@ -1,0 +1,14 @@
+<div *ngIf="user" class="user-container m-2">
+  <div class="d-flex flex-wrap align-items-center">
+    <img src="assets\profile-picture.png">
+    <h6 class="ms-2 mb-0">{{user.userName}}</h6>
+  </div>
+ <div class="d-flex row col-12 mt-2 gx-0">
+  <button *ngIf="!conversationId" (click)="createChatRoom(user.userId)" mat-stroked-button color="primary">
+    Send Message
+  </button>
+  <button *ngIf="conversationId" mat-stroked-button color="primary"  (click)="navigateToConversation(conversationId)">
+    Go to conversation
+  </button>
+ </div>
+</div>
