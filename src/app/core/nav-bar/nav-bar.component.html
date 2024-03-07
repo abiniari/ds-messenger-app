@@ -3,6 +3,15 @@
     [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="'side'"
     [opened]="(isHandset$ | async) === false">
     <div class="side-nav-content">
+      <mat-toolbar class="user mt-1" *ngIf="userName$|async">
+        <img src="assets\profile-picture.png">
+        <p>{{userName$|async}}</p>
+      </mat-toolbar>
+      <mat-nav-list class="h-50">
+        <button mat-list-item (click)="openUsersDrawer()"><mat-icon>people</mat-icon></button>
+        <button mat-list-item (click)="openMessagesDrawer()"><mat-icon>messages</mat-icon></button>
+      </mat-nav-list>
+
       <mat-toolbar class="justify-content-center flex-column mt-auto">
         <button color="accent" *ngIf="(isHandset$ | async)" (click)="drawer.close()"
           mat-icon-button><mat-icon>first_page</mat-icon></button>
@@ -14,12 +23,24 @@
   <mat-sidenav-content>
     <!-- inner sidenav -->
     <mat-sidenav-container class="example-container">
-      <mat-sidenav *ngIf="isLoggedIn" #innerDrawer [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      <mat-sidenav *ngIf="isLoggedIn" opened #innerDrawer [mode]="(isHandset$ | async) ? 'over' : 'side'"
         fixedInViewport position="start" role="navigation" class="sidenav-wv">
         <mat-nav-list class="h-50 pt-0">
           <div class="nav-close d-flex justify-content-end">
             <button mat-icon-button (click)="innerDrawer.close()"><mat-icon>close</mat-icon></button>
           </div>
+          <ng-container *ngIf="usersList; else messages">
+            <div class="d-flex">
+              <h4 class="ms-2 mt-1 mb-2">Users</h4>
+            </div>
+            <app-user-list mat-icon-item></app-user-list>
+          </ng-container>
+          <ng-template #messages>
+            <div class="d-flex">
+              <h4 class="ms-2  mt-1 mb-2">Conversations</h4>
+            </div>
+            <app-conversations-list></app-conversations-list>
+          </ng-template>
         </mat-nav-list>
       </mat-sidenav>
       <mat-sidenav-content>
