@@ -14,8 +14,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AuthorizationModule } from './authorization/authorization.module';
 import { AuthorizationService } from './core/authorization.service';
+import { LoginModule } from './login/login.module';
 
 @NgModule({
   declarations: [
@@ -27,7 +27,7 @@ import { AuthorizationService } from './core/authorization.service';
     CoreModule,
     FirestoreModule,
     BrowserAnimationsModule,
-    AuthorizationModule,
+    LoginModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => {
       const auth = getAuth();

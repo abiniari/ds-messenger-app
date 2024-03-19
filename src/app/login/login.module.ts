@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -10,10 +9,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { CoreModule } from '../core/core.module';
-import { AuthorizationRoutingModule } from './authorization-routing.module';
 import { LoginDialogComponent } from './login-dialog/login-dialog.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { LoginPageComponent } from './login-page/login-page.component';
+import { LoginRoutingModule } from './login-routing.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +22,7 @@ import { LoginPageComponent } from './login-page/login-page.component';
   ],
   imports: [
     CommonModule,
-    AuthorizationRoutingModule,
+    LoginRoutingModule,
     NgxDropzoneModule,
     MatButtonModule,
     FormsModule,
@@ -42,4 +41,4 @@ import { LoginPageComponent } from './login-page/login-page.component';
 
   ]
 })
-export class AuthorizationModule { }
+export class LoginModule { }

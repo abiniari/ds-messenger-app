@@ -6,8 +6,8 @@ import { NavigationErrorComponent } from './core/navigation-error/navigation-err
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   {
-    path:'login',loadChildren:() => import('./authorization/authorization.module')
-    .then(m => m.AuthorizationModule)
+    path:'login',loadChildren:() => import('./login/login.module')
+    .then(m => m.LoginModule)
   },
   {
     path:'chat-board',loadChildren: () => import('./chat-board/chat-board.module')

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import * as firebase from 'firebase/database';
-import { filter } from 'rxjs';
+import { combineLatest, filter, switchMap } from 'rxjs';
 import { ConversationsService } from 'src/app/core/conversations.service';
 import { Conversation } from 'src/app/core/models/chat-room.model';
 import { Message } from 'src/app/core/models/message.model';
@@ -36,21 +36,30 @@ export class ChatBoardComponent {
     });
   }
 
+  retrieveMessages() {
+    this.conversationsService.getMessagesForConversation(this.conversationId)
+  }
+
   getConversation() {
     if (!this.conversationId) { return }
-    this.conversationsService.getConversationById(this.conversationId)
-      .subscribe((conversation: Conversation) => {
+    combineLatest([
+      this.conversationsService.getConversationById(this.conversationId),
+      this.conversationsService.getMessagesForConversation(this.conversationId)
+    ])
+      .subscribe(([conversation,messages]) => {
         this.conversation = conversation;
         if (!this.conversation) {
           this.routers.navigate(['/error'])
-          return; }
-        this.conversationMessages = this.convertMessagesToArray(conversation.messages);
+          return;
+        }
+        this.conversationMessages = messages
 
       })
   }
 
-  convertMessagesToArray(messages: any): any[] {
-    return messages ? Object.keys(messages).map(key => messages[key]) : [];
+  convertMessagesToArray(conversation: Conversation): Message[] {
+    return conversation ? Object.values(conversation)
+      .filter((value): value is Message => typeof value === 'object' && 'content' in value) : [];
   }
 
   sendMessage() {
@@ -58,11 +67,11 @@ export class ChatBoardComponent {
     if (!currentUser) { return }
     const message: Message = {
       sender: currentUser,
-      reciever: this.conversation.userOne !== currentUser ? this.conversation.userOne : this.conversation.userTwo,
+      receiver: this.conversation.userOne !== currentUser ? this.conversation.userOne : this.conversation.userTwo,
       content: this.messageControl.value,
       timestamp: firebase.serverTimestamp()
     }
-    this.conversationsService.sendMessage(this.conversationId, message)
+    this.conversationsService.sendMessage(this.conversationId,message)
     this.messageControl.patchValue(null)
   }
 

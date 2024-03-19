@@ -4,11 +4,11 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { AuthGuard } from '../core/auth.guard';
 
 const routes: Routes = [
-  {path:'',component:LoginPageComponent,canActivate:[AuthGuard]}
+  { path: '', component: LoginPageComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class AuthorizationRoutingModule { }
+export class LoginRoutingModule { }

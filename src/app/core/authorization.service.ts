@@ -4,7 +4,7 @@ import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Observable, ReplaySubject, Subscription } from 'rxjs';
-import { LoginDialogComponent } from '../authorization/login-dialog/login-dialog.component';
+import { LoginDialogComponent } from '../login/login-dialog/login-dialog.component';
 
 
 @Injectable({
@@ -22,7 +22,7 @@ export class AuthorizationService implements OnDestroy {
 
   private loggedInSubject = new ReplaySubject<boolean>(1)
 
-  private subsciption = new Subscription();
+  private subscription = new Subscription();
 
   constructor(
     private fireAuth: AngularFireAuth,
@@ -70,7 +70,7 @@ export class AuthorizationService implements OnDestroy {
   private setAuthPersistence() { this.fireAuth.setPersistence('session'); }
 
   private checkAuthState() {
-    this.subsciption.add(this.fireAuth.authState.subscribe((authUser) => {
+    this.subscription.add(this.fireAuth.authState.subscribe((authUser) => {
       if (authUser && localStorage.getItem('user')) {
         if (authUser.uid === localStorage.getItem('user')) {
           this.userLoggedIn = true;
@@ -84,7 +84,7 @@ export class AuthorizationService implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subsciption.unsubscribe();
+    this.subscription.unsubscribe();
   }
 
 }

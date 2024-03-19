@@ -17,7 +17,8 @@
 }
 
 .site-logo {
-  top: 5px;
+  left: 0;
+  top: 20px;
   flex-wrap: wrap;
   justify-content: center;
 
@@ -31,6 +32,7 @@
 
   h2 {
     white-space: nowrap;
+    margin-bottom: 0;
     color: #737373;
     font-weight: 500;
   }
@@ -38,13 +40,21 @@
 }
 
 @media only screen and (max-width: 402px) {
-  .site-logo ::ng-deep {
-    svg {
-      left: 0px;
-    }
+  .landing-page-container { height: 100dvh;}
+  .site-logo {
+    left: 50px;
+    ::ng-deep 
+      svg {
+        width: 50px;
+        left: 0px;
+      }
+      
   }
+  
 
   .landing-page-container {
+    justify-content: center;
+    align-items: center;
     padding: 20px 10px;
   }
 

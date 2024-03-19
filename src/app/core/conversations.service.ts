@@ -36,12 +36,11 @@ export class ConversationsService {
     return this.fireDb.object('conversations/' + id).valueChanges() as Observable<Conversation>
   }
 
-  sendMessage(id: string, message: Message) {
-    this.fireDb.list(`conversations/${id}/messages`).push(message)
+  sendMessage(conversationId: string, message: Message) {
+    this.fireDb.list(`messages/${conversationId}`).push(message)
   }
 
   getMessagesForConversation(id: string): Observable<Message[]> {
-    return this.fireDb.list('conversations/' + id + '/messages').valueChanges() as Observable<Message[]>
-
+    return this.fireDb.list(`messages/${id}`).valueChanges() as Observable<Message[]>
   }
 }

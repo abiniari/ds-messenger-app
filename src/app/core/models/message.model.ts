@@ -1,6 +1,6 @@
 export interface Message {
   sender:string;
-  reciever:string;
+  receiver:string;
   content:string;
   timestamp:Object
 }
