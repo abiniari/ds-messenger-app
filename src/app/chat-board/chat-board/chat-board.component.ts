@@ -57,11 +57,6 @@ export class ChatBoardComponent {
       })
   }
 
-  convertMessagesToArray(conversation: Conversation): Message[] {
-    return conversation ? Object.values(conversation)
-      .filter((value): value is Message => typeof value === 'object' && 'content' in value) : [];
-  }
-
   sendMessage() {
     const currentUser = localStorage?.getItem('user')
     if (!currentUser) { return }
